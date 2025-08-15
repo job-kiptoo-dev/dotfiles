@@ -1,0 +1,63 @@
+{
+  "position": "top",
+  "modules-left": ["hyprland/workspaces"],
+  "modules-center": ["hyprland/window"],
+  "modules-right": ["network","pulseaudio","cpu","temperature","memory", "battery", "clock"],
+  "clock": {
+    // Display format with an icon and lavender-colored text
+  "format": " {:%a, %d %b %H:%M}",
+
+  // Tooltip with bolded month/year and a mini calendar
+  "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+
+  // Optional: update interval (in seconds)
+  "interval": 60
+  },
+  "memory": {
+  "format": "󰍛  {used:0.1f}G / {total:0.1f}G",
+  "tooltip": true,
+  "interval": 5
+},
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "<span size='10000' foreground='#a6e3a1'>{icon} </span> {capacity}%",
+    "format-warning": "<span size='10000' foreground='#B1E3AD'>{icon} </span> {capacity}%",
+    "format-critical": "<span size='10000' foreground='#E38C8F'>{icon} </span> {capacity}%",
+    "format-charging": "<span size='10000' foreground='#B1E3AD'> </span>{capacity}%",
+    "format-plugged": "<span size='10000' foreground='#B1E3AD'> </span>{capacity}%",
+    "format-alt": "<span size='10000' foreground='#B1E3AD'>{icon} </span> {time}",
+    "format-full": "<span size='10000' foreground='#B1E3AD'> </span>{capacity}%",
+    "format-icons": ["", "", "", "", ""],
+    "tooltip-format": "{time}"
+  },
+  "cpu": {
+  "format": "  {usage}%",
+  "tooltip": true,
+  "interval": 5
+},
+  "temperature": {
+  "format": "  {temperatureC}°C",
+  "critical-threshold": 80,
+  "tooltip": true
+},
+
+
+  "network": {
+    "format-wifi": "<span size='10000' foreground='#f5e0dc'>  </span>{essid}",
+    "format-ethernet": "<span size='10000' foreground='#f5e0dc'>󰤭  </span> Disconnected",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "<span size='10000' foreground='#f5e0dc'>  </span>Disconnected",
+    "tooltip-format-wifi": "Signal Strenght: {signalStrength}%"
+  },
+  "pulseaudio": {
+      "format": "{icon}  {volume}%",
+      "format-muted": "",
+      "format-icons": {
+          "default": ["", "", " "]
+      },
+      "on-click": "pavucontrol"
+  }
+}
