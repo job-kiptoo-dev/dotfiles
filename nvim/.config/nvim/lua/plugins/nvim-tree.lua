@@ -1,29 +1,32 @@
-require("neo-tree").setup({
-  close_if_last_window = true, -- Close Neo-tree if it's the last window open
-  popup_border_style = "rounded",
-  enable_git_status = true,
-  enable_diagnostics = true,
-
-  window = { -- Correct for Neo-tree (instead of view)
-    position = "right",
-    width = 40,
-  },
-
-  filesystem = {
-    filtered_items = {
-      hide_dotfiles = false, -- Show dotfiles
-      hide_gitignored = false,
-    },
-    follow_current_file = { enabled = true }, -- Focus on the current file
-    use_libuv_file_watcher = true,            -- Auto refresh
-  },
-
-  git_status = {
-    window = {
-      position = "float", -- Show git status in a floating window
-      width = 60,
-      height = 20,
-    },
-  },
-})
-
+return {
+	{
+		"nvim-telescope/telescope.nvim",
+		tag = "0.1.6", -- or branch = "0.1.x"
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("telescope").setup({
+				defaults = {
+					layout_strategy = "vertical",
+					layout_config = {
+						preview_height = 0.7,
+						vertical = {
+							size = {
+								width = "95%",
+								height = "95%",
+							},
+						},
+					},
+				},
+			})
+		end,
+	},
+	{ -- Highlight, edit, and navigate code
+		"nvim-treesitter/nvim-treesitter",
+		build = function()
+			pcall(require("nvim-treesitter.install").update({ with_sync = true }))
+		end,
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter-textobjects",
+		},
+	},
+}

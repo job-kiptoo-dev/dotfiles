@@ -1,4 +1,4 @@
-require("lsp-config").setup {
+return {
   {
     "williamboman/mason.nvim",
     lazy = false,
@@ -27,23 +27,22 @@ require("lsp-config").setup {
 
       local lspconfig = require("lspconfig")
 
-      lspconfig.tailwindcss.setup({
-        capabilities = capabilities
-      })
+      -- Example servers
+      lspconfig.tailwindcss.setup({ capabilities = capabilities })
       lspconfig.ruby_lsp.setup({
         capabilities = capabilities,
-        cmd = { "/home/typecraft/.asdf/shims/ruby-lsp" }
+        cmd = { "/home/typecraft/.asdf/shims/ruby-lsp" },
       })
-      lspconfig.lua_ls.setup({
-        capabilities = capabilities
-      })
+      lspconfig.lua_ls.setup({ capabilities = capabilities })
 
+      -- Keymaps
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
       vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
       vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
       vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
       vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
-      vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, {})
+      vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, {})
     end,
   },
 }
+
