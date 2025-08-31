@@ -28,6 +28,15 @@ return {
 	end,
 	dependencies = {
 		"MunifTanjim/nui.nvim",
-		"rcarriga/nvim-notify", -- optional
+		{
+			"rcarriga/nvim-notify",
+			config = function()
+				require("notify").setup({
+					background_colour = "#1e1e2e", -- matches Catppuccin Mocha background
+					timeout = 5000, -- 👈 notifications last 5s
+				})
+				vim.notify = require("notify") -- make notify the default for vim
+			end,
+		},
 	},
 }

@@ -3,13 +3,11 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		event = { "BufReadPost", "BufNewFile" },
-		build = function()
-			pcall(require("nvim-treesitter.install").update({ with_sync = true }))
-		end,
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
+			"windwp/nvim-ts-autotag", -- 👈 required for autotag
+			"nvim-treesitter/playground",
 		},
-
 		opts = {
 			ensure_installed = {
 				-- Core languages
@@ -23,6 +21,7 @@ return {
 				"css",
 				"json",
 				"yaml",
+				"markdown",
 				"markdown_inline",
 
 				-- Backend / scripting
@@ -30,10 +29,6 @@ return {
 				"bash",
 				"regex",
 				"sql",
-
-				-- Documentation
-				"markdown",
-				"markdown_inline",
 
 				-- Extras
 				"dockerfile",
@@ -45,13 +40,13 @@ return {
 				additional_vim_regex_highlighting = false,
 			},
 			indent = { enable = true },
-			autotag = { enable = true },
+			autotag = { enable = true }, -- 👈 now works
 		},
 		config = function(_, opts)
 			require("nvim-treesitter.configs").setup(opts)
 		end,
 	},
-	{ "nvim-treesitter/nvim-treesitter" },
-	{ "nvim-treesitter/playground" },
+
+	-- telescope extras
 	{ "nvim-telescope/telescope-symbols.nvim" },
 }
