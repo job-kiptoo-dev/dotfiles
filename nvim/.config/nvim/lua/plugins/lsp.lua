@@ -14,7 +14,7 @@ return {
 			require("mason-lspconfig").setup({
 				ensure_installed = {
 					"pyright",
-					"ruff_lsp",
+					-- "ruff_lsp",
 					"tailwindcss",
 					"ts_ls",
 					"eslint",
@@ -76,7 +76,7 @@ return {
 						},
 					},
 				},
-				ruff_lsp = {},
+				-- ruff_lsp = {},
 				ts_ls = {},
 				tailwindcss = {},
 				eslint = {},
