@@ -17,19 +17,16 @@ vim.keymap.set("n", "<leader><right>", ":vertical resize -20<cr>")
 vim.keymap.set("n", "<leader><up>", ":resize +10<cr>")
 vim.keymap.set("n", "<leader><down>", ":resize -10<cr>")
 
-
 vim.cmd("set expandtab")
 vim.cmd("set tabstop=2")
 vim.cmd("set softtabstop=2")
 vim.cmd("set shiftwidth=2")
 
 -- Navigate vim panes better
-vim.keymap.set('n', '<c-k>', ':wincmd k<CR>')
-vim.keymap.set('n', '<c-j>', ':wincmd j<CR>')
-vim.keymap.set('n', '<c-h>', ':wincmd h<CR>')
-vim.keymap.set('n', '<c-l>', ':wincmd l<CR>')
-
-
+vim.keymap.set("n", "<c-k>", ":wincmd k<CR>")
+vim.keymap.set("n", "<c-j>", ":wincmd j<CR>")
+vim.keymap.set("n", "<c-h>", ":wincmd h<CR>")
+vim.keymap.set("n", "<c-l>", ":wincmd l<CR>")
 
 -- find and replace
 -- vim.keymap.set("v", "<C-r>", "\"hy:%s/<C-r>h//g<left><left><left>")
@@ -59,13 +56,12 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("x", "p", [["_dP]])
 
 -- yank to clipboard
-vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 -- yank line to clipboard
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 -- delete without yanking
-vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
-
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- map Ctrl-c to Escape
 vim.keymap.set("i", "<C-c>", "<Esc>")
@@ -98,37 +94,35 @@ vim.keymap.set("n", "<leader>sr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left>
 vim.keymap.set("n", "<leader>ig", "A # noqa<Esc>")
 
 -- checkbox
-vim.keymap.set('n', '<leader>ty', [[:s/\[\s\]/[x]/<cr>]], { silent = true })
-vim.keymap.set('n', '<leader>tu', [[:s/\[x\]/[ ]/<cr>]], { silent = true })
+vim.keymap.set("n", "<leader>ty", [[:s/\[\s\]/[x]/<cr>]], { silent = true })
+vim.keymap.set("n", "<leader>tu", [[:s/\[x\]/[x]/<cr>]], { silent = true })
 
 -- Functions to toggle comments in JavaScript
 -- (for use in Vue files, where comment.nvim is not working for me)
-vim.keymap.set({'n', 'v'}, '<leader>jc', [[:s/^/\/\//g<cr>]], { silent = true })
-vim.keymap.set({'n', 'v'}, '<leader>jd', [[:s/\/\///g<cr>]], { silent = true })
+vim.keymap.set({ "n", "v" }, "<leader>jc", [[:s/^/\/\//g<cr>]], { silent = true })
+vim.keymap.set({ "n", "v" }, "<leader>jd", [[:s/\/\///g<cr>]], { silent = true })
 
 -- Toggle checkbox values
 function toggle_checkbox()
-    -- Get the current line
-    local line = vim.api.nvim_get_current_line()
+	-- Get the current line
+	local line = vim.api.nvim_get_current_line()
 
-    -- Check if line contains unchecked checkbox
-    if line:match("^%s*-%s*%[ %]") then
-        -- Replace unchecked with checked
-        local new_line = line:gsub("%[ %]", "[x]")
-        vim.api.nvim_set_current_line(new_line)
+	-- Check if line contains unchecked checkbox
+	if line:match("^%s*-%s*%[ %]") then
+		-- Replace unchecked with checked
+		local new_line = line:gsub("%[ %]", "[x]")
+		vim.api.nvim_set_current_line(new_line)
 
-    -- Check if line contains checked checkbox
-    elseif line:match("^%s*-%s*%[x%]") then
-        -- Replace checked with unchecked
-        local new_line = line:gsub("%[x%]", "[ ]")
-        vim.api.nvim_set_current_line(new_line)
+	-- Check if line contains checked checkbox
+	elseif line:match("^%s*-%s*%[x%]") then
+		-- Replace checked with unchecked
+		local new_line = line:gsub("%[x%]", "[ ]")
+		vim.api.nvim_set_current_line(new_line)
 
-    -- If no checkbox, do nothing
-    else
-        print("No checkbox found on this line")
-    end
+	-- If no checkbox, do nothing
+	else
+		print("No checkbox found on this line")
+	end
 end
 
-vim.keymap.set('n', '<leader>ti', toggle_checkbox, { noremap = true, silent = true })
-
-
+vim.keymap.set("n", "<leader>ti", toggle_checkbox, { noremap = true, silent = true })
