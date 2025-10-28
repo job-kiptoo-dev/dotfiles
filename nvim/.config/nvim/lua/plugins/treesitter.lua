@@ -6,7 +6,6 @@ return {
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
 			"windwp/nvim-ts-autotag", -- 👈 required for autotag
-			"nvim-treesitter/playground",
 		},
 		opts = {
 			ensure_installed = {
