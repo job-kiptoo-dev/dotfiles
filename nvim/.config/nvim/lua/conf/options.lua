@@ -112,5 +112,6 @@ vim.opt.splitbelow = true -- Horizontal splits open below
 vim.opt.splitright = true -- Vertical splits open to the right
 
 
+vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<cr>")
 
 
