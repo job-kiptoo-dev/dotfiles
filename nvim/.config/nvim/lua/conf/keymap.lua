@@ -64,6 +64,15 @@ keymap("x", "<A-j>", ":move '>+1<CR>gv=gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv=gv", opts)
 keymap("x", "p", '"_dP', opts)
 
+-- Git merge conflicts --
+-- Jump between conflict markers in any buffer (works without fugitive loaded)
+local function goto_conflict(backward)
+	local flags = backward and "bW" or "W"
+	vim.fn.search([[^\(<<<<<<<\|=======\|>>>>>>>\)]], flags)
+end
+vim.keymap.set("n", "]x", function() goto_conflict(false) end, { desc = "Next conflict marker", silent = true })
+vim.keymap.set("n", "[x", function() goto_conflict(true) end, { desc = "Prev conflict marker", silent = true })
+
 -- Terminal --
 -- Better terminal navigation
 keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
