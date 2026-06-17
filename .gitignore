@@ -1,2 +1,5 @@
 .env
 .env
+
+# TPM-managed tmux plugins (installed via prefix+I, not tracked)
+tmux/.config/tmux/plugins/
